@@ -1,0 +1,4 @@
+# config.py
+
+BOT_TOKEN = "7946884605:AAHFs9N4KAzvdZStYGyusms62z1tbqisbO4"
+TMDB_API_KEY = "7a2316f7b5c854c33d0e552824f8a85b"
