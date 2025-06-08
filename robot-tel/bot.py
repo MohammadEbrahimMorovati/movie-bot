@@ -1,16 +1,19 @@
-# bot.py
-import telebot
 from config import BOT_TOKEN
-from handlers import start, search, menu , advanced_search
+import telebot
+import os
 
 bot = telebot.TeleBot(BOT_TOKEN)
 
-# ثبت هندلرها
-
+# ثبت هندلرها مثل قبل
+from handlers import start, search, advanced_search, menu
 start.register_handlers(bot)
-menu.register_handlers(bot)
 search.register_handlers(bot)
 advanced_search.register_handlers(bot)
+menu.register_handlers(bot)
 
-print("🤖 ربات در حال اجراست...")
-bot.infinity_polling()
+# URL و TOKEN
+WEBHOOK_URL = f"https://{os.getenv('RENDER_EXTERNAL_HOSTNAME')}/{BOT_TOKEN}/"
+
+# حذف webhook قبلی و ست کردن جدید
+bot.remove_webhook()
+bot.set_webhook(url=WEBHOOK_URL)
